@@ -10,12 +10,12 @@ import javax.swing.JRadioButton;
  *
  * @author nhang
  */
-public class formCongTruNhanChia extends javax.swing.JFrame {
+public class frmCongTruNhanChia extends javax.swing.JFrame {
 
     /**
-     * Creates new form formCongTruNhanChia
+     * Creates new form frmCongTruNhanChia
      */
-    public formCongTruNhanChia() {
+    public frmCongTruNhanChia() {
         initComponents();
     }
 
@@ -242,7 +242,12 @@ public class formCongTruNhanChia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void deselectedRad(JRadioButton a, JRadioButton b, JRadioButton c)
+    {
+        a.setSelected(false);
+        b.setSelected(false);
+        c.setSelected(false);
+    }
     private void btnGiaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaiActionPerformed
         int a, b;
         a = Integer.parseInt(txtA.getText());
@@ -264,12 +269,7 @@ public class formCongTruNhanChia extends javax.swing.JFrame {
             txtKetQua.setText(a / b + "");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnGiaiActionPerformed
-        private void deselectedRad(JRadioButton a, JRadioButton b, JRadioButton c)
-    {
-        a.setSelected(false);
-        b.setSelected(false);
-        c.setSelected(false);
-    }
+
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         radCong.setSelected(false);
         deselectedRad(radNhan, radTru, radChia);
@@ -325,20 +325,20 @@ public class formCongTruNhanChia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmCongTruNhanChia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCongTruNhanChia().setVisible(true);
+                new frmCongTruNhanChia().setVisible(true);
             }
         });
     }
