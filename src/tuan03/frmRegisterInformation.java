@@ -4,6 +4,16 @@
  */
 package tuan03;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author nhang
@@ -41,7 +51,8 @@ public class frmRegisterInformation extends javax.swing.JFrame {
         cboProvince = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
-        btnRegister1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        btnShow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,8 +70,18 @@ public class frmRegisterInformation extends javax.swing.JFrame {
         jLabel6.setText("Province");
 
         radMale.setText("Male");
+        radMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radMaleActionPerformed(evt);
+            }
+        });
 
         radFemale.setText("Female");
+        radFemale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radFemaleActionPerformed(evt);
+            }
+        });
 
         cboProvince.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hà Nội" }));
 
@@ -129,8 +150,25 @@ public class frmRegisterInformation extends javax.swing.JFrame {
         jLabel7.setText("Operation");
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
-        btnRegister1.setText("Reset");
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        btnShow.setText("Show");
+        btnShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,7 +189,9 @@ public class frmRegisterInformation extends javax.swing.JFrame {
                         .addGap(91, 91, 91)
                         .addComponent(btnRegister)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegister1)))
+                        .addComponent(btnReset)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnShow)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,12 +205,66 @@ public class frmRegisterInformation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister)
-                    .addComponent(btnRegister1))
+                    .addComponent(btnReset)
+                    .addComponent(btnShow))
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        try {
+            // TODO add your handling code here:
+            String duongDan = "‪data.txt";
+            FileWriter pw = new FileWriter(duongDan);
+            String chuoi = "Name: " + txtName.getText() +
+                     "\nBirth: " + txtBirth.getText() +
+                     "\nEmail: " + txtEmail.getText();
+            BufferedWriter bf = new BufferedWriter(pw);
+            bf.write(chuoi);
+            bf.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmRegisterInformation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(frmRegisterInformation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void radMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radMaleActionPerformed
+        // TODO add your handling code here:
+        if (radMale.isSelected()) {
+            radFemale.setSelected(false);
+        }
+    }//GEN-LAST:event_radMaleActionPerformed
+
+    private void radFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radFemaleActionPerformed
+        // TODO add your handling code here:
+        if (radFemale.isSelected()) {
+            radMale.setSelected(false);
+        }
+    }//GEN-LAST:event_radFemaleActionPerformed
+    private void resetRad(JRadioButton rad)
+    {
+        rad.setSelected(false);
+    }
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtBirth.setText("");
+        txtEmail.setText("");
+        txtName.setText("");
+        resetRad(radMale);
+        resetRad(radFemale);
+        
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Name: " + txtName.getText() +
+                                            "\nBirth: " + txtBirth.getText() +
+                                            "\nEmail: " + txtEmail.getText());
+    }//GEN-LAST:event_btnShowActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,7 +303,8 @@ public class frmRegisterInformation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnShow;
     private javax.swing.JComboBox<String> cboProvince;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
